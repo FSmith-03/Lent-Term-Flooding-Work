@@ -6,4 +6,10 @@ geographical data.
 
 """
 
+from floodsystem.station import MonitoringStation
 from .utils import sorted_by_key  # noqa
+
+def stations_by_distance(stations, p):
+
+    
+    return 
