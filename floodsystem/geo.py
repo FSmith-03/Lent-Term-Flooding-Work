@@ -14,7 +14,7 @@ def stations_by_distance(stations, p):
 
     
     return 
-#Beginning of task 1C
+#Beginning of task 1D
 def river_with_station(station):
         stations=build_station_list()
         for station in stations:
@@ -22,5 +22,5 @@ def river_with_station(station):
         else:
             t="Error no station found"
         return print(t)
-#Test of task 1C
+#Test of task 1D
 print(river_with_station("Bourton Dickler"))
