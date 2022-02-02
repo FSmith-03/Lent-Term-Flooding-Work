@@ -14,13 +14,24 @@ def stations_by_distance(stations, p):
 
     
     return 
+    
 #Beginning of task 1D
 def river_with_station(station):
-        stations=build_station_list()
-        for station in stations:
-            t = station.river
-        else:
-            t="Error no station found"
-        return print(t)
+        stations=build_station_list()  #gets stations
+        River=[]                       #list to hold Rivers
+        inList = False
+        for station in stations:       #loops through stations
+            t = station.river          #holds the currents stations river
+            if t in River:             #is river in list
+                inList = True      
+            if not inList:             #if it is not it added to list
+                River.append(t)   
+
+        return River
+
 #Test of task 1D
-print(river_with_station("Bourton Dickler"))
+#print(river_with_station("Bourton Dickler"))
+
+
+
+
