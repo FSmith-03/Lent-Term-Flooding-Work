@@ -29,8 +29,26 @@ def river_with_station(station):
 
         return River
 
-#Test of task 1D
-#print(river_with_station("Bourton Dickler"))
+#Task 1E
+def rivers_by_station_number(stations, N):
+
+    stations = build_station_list()
+    Nlist = []
+    Flist = []
+    counter = 1
+    inlist = False
+    for station in stations:
+        r = station.river
+        if r in Nlist:
+            counter += 1
+            inlist = True
+        if not inlist:
+            t = (station.river, counter)
+            Nlist.append(t)
+    for group in Nlist:
+        if group[1]>=N:
+            Flist.append(group)
+    return Flist
 
 
 
