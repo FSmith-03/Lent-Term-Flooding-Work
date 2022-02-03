@@ -6,6 +6,7 @@ geographical data.
 
 """
 
+from sqlalchemy import true
 from floodsystem.station import MonitoringStation
 from floodsystem.stationdata import build_station_list
 from .utils import sorted_by_key  # noqa
@@ -35,20 +36,24 @@ def rivers_by_station_number(stations, N):
     stations = build_station_list()
     Nlist = []
     Flist = []
-    counter = 1
-    inlist = False
     for station in stations:
+        counter = 1
+        inlist = False
         r = station.river
-        if r in Nlist:
-            counter += 1
+        for n in range(len(stations)):
+            if stations[n].river == r:
+                counter+=1
+        t = (r, counter)
+        if t in Nlist:
             inlist = True
         if not inlist:
-            t = (station.river, counter)
             Nlist.append(t)
+
     for group in Nlist:
         if group[1]>=N:
             Flist.append(group)
-    return Flist
+    RiversOrdered = Flist.sort()
+    return RiversOrdered
 
 
 
