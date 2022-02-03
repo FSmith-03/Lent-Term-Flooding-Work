@@ -52,8 +52,8 @@ def rivers_by_station_number(stations, N):
     for group in Nlist:
         if group[1]>=N:
             Flist.append(group)
-    RiversOrdered = Flist.sort()
-    return RiversOrdered
+    Flist.sort(key=lambda x: x[1], reverse=True)
+    return Flist
 
 
 
