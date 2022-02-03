@@ -38,3 +38,18 @@ class MonitoringStation:
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
         return d
+    
+    #Task 1F
+    def typical_range_consistent(self):
+        level=self.typical_range
+        state = False
+        for n in range(2):
+            if type(level[n]) == int or type(level[n]) == float:
+                pass
+            else:
+                state = False
+        if level[0]>level[1]:
+            state = False
+        else:
+            state = True
+        return state
