@@ -1,9 +1,8 @@
 from floodsystem.stationdata import build_station_list
-
+from floodsystem.geo import stations_by_distance
 
 def run():
     """Requirements for Task 1B"""
-    from floodsystem.geo import stations_by_distance
     # Build list of stations
     stations = build_station_list()
     StationsTuple= stations_by_distance(stations, (52.2053, 0.1218))
