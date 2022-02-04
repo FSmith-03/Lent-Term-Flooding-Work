@@ -5,19 +5,24 @@
 geographical data.
 
 """
-
+from haversine import haversine, Unit
 from sqlalchemy import true
 from floodsystem.station import MonitoringStation
 from floodsystem.stationdata import build_station_list
 from .utils import sorted_by_key  # noqa
 #Beginning of task 1B
 def stations_by_distance(stations, p):
+    tupleList = []                          #list of tuple
+    stations=build_station_list()           
+    for station in stations:                #loops through stations
+        dist = haversine(p,station.coord)   #calculates distance
+        temp = (station.name, dist)         
+        tupleList.append(temp)              
 
-    
-    return 
+    return sorted_by_key(tupleList,1)
     
 #Beginning of task 1D
-def river_with_station(station):
+def river_with_station(stations):
         stations=build_station_list()  #gets stations
         River=[]                       #list to hold Rivers
         for station in stations:       #loops through stations
