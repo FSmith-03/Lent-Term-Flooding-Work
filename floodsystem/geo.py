@@ -5,12 +5,13 @@
 geographical data.
 
 """
+
 from haversine import haversine, Unit
-from sqlalchemy import true
+from sqlalchemy import false, true
 from floodsystem.station import MonitoringStation
 from floodsystem.stationdata import build_station_list
 from .utils import sorted_by_key  # noqa
-#Beginning of task 1B
+#task 1B
 def stations_by_distance(stations, p):
     tupleList = []                          #list of tuple
     stations=build_station_list()           
@@ -18,10 +19,26 @@ def stations_by_distance(stations, p):
         dist = haversine(p,station.coord)   #calculates distance
         temp = (station.name, dist)         
         tupleList.append(temp)              
-
+    tup = tupleList[5]
+    print(tup[1]) 
     return sorted_by_key(tupleList,1)
-    
-#Beginning of task 1D
+
+#task 1C
+def stations_within_radius(stations, centre, r):
+    Sortedtuple = stations_by_distance(stations, centre)    #obtains the stations sorted by distance
+    SmallRStations = []                                     #list of stations in range
+    x=0                                                     #counter of a stations respective location in sortedtuple
+    for station in stations:                                
+        tup = Sortedtuple[x]                                #gets tuple containing current station
+        if (tup[1] < r):                                    #if tuple in range add to list
+            SmallRStations.append(station.name)
+        else:                                               #if not break the loop as you know all future stations are further away
+            break    
+        x+=1                                                #increase count for next station
+    return SmallRStations        
+
+
+#task 1D
 def river_with_station(stations):
         stations=build_station_list()  #gets stations
         River=[]                       #list to hold Rivers
