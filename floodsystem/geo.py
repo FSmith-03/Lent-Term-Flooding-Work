@@ -19,8 +19,7 @@ def stations_by_distance(stations, p):
         dist = haversine(p,station.coord)   #calculates distance
         temp = (station.name, dist)         
         tupleList.append(temp)              
-    tup = tupleList[5]
-    print(tup[1]) 
+
     return sorted_by_key(tupleList,1)
 
 #task 1C
@@ -35,6 +34,7 @@ def stations_within_radius(stations, centre, r):
         else:                                               #if not break the loop as you know all future stations are further away
             break    
         x+=1                                                #increase count for next station
+
     return SmallRStations        
 
 
@@ -46,7 +46,6 @@ def river_with_station(stations):
             t = station.river          #holds the currents stations river
             if t not in River:         #is river in list
                 River.append(t)        #if it is not its added to list
-                   
 
         return River
 
