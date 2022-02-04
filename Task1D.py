@@ -1,4 +1,3 @@
-from re import X
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import river_with_station
 from floodsystem.geo import stations_by_river
