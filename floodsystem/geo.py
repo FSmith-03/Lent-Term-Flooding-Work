@@ -20,15 +20,23 @@ def stations_by_distance(stations, p):
 def river_with_station(station):
         stations=build_station_list()  #gets stations
         River=[]                       #list to hold Rivers
-        inList = False
         for station in stations:       #loops through stations
             t = station.river          #holds the currents stations river
-            if t in River:             #is river in list
-                inList = True      
-            if not inList:             #if it is not it added to list
-                River.append(t)   
+            if t not in River:         #is river in list
+                River.append(t)        #if it is not its added to list
+                   
 
         return River
+
+def stations_by_river(stations):
+        stations=build_station_list()  #gets stations
+        RiverToStation={}              #river to station dic
+        for station in stations:       #loops through stations
+            t = station.river          #holds river (saves having to retreve it multiple times)
+            if t not in RiverToStation: #creates river key if it doesnt already exist  
+                RiverToStation[t] = []
+            RiverToStation[t].append(station.name) #adds current station to correct key
+        return RiverToStation
 
 #Task 1E
 def rivers_by_station_number(stations, N):
