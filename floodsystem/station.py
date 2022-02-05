@@ -41,14 +41,13 @@ class MonitoringStation:
     
     #Task 1F
     def typical_range_consistent(self):
-        level=self.typical_range
-        N1=level[0]
-        N2=level[1]
-        if type(N1) == int or type(N1) == float and type(N2) == int or type(N2) == float:
-            if N1 < N2:
-                self.typical_range_consistent = True
-            else:
-                self.typical_range_consistent = False
+        if:
+            return False
         else:
-            self.typical_range_consistent = False
-        return self.typical_range_consistent
+            N1=self.typical_range[0]
+            N2=self.typical_range[1]
+            if N1>=N2:
+                state=False
+            else:
+                state = True
+        return state, print(N1), print(N2)
