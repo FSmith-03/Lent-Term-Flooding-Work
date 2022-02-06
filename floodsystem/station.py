@@ -7,6 +7,8 @@ for manipulating/modifying station data
 """
 
 
+from sqlalchemy import true
+
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -52,14 +54,10 @@ class MonitoringStation:
             else:
                 return True
 
+def inconsistent_typical_range_stations(stations):  #takes station
+    t = []                                          #holds list 
+    for station in stations:                         
+        if not station.typical_range_consistent():  #if station is false add station to list
+            t.append(station.name)
+    return t        
 
-def inconsistent_typical_range_stations(stations):
-    listinconsistent = []
-    for station in stations:
-        if station.typical_range_consistent() is False:
-            nom = station.name
-            print(stations.name(()))
-            listinconsistent.append(nom)
-        else:
-            return
-    return print(listinconsistent)
