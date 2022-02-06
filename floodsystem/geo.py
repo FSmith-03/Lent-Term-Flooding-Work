@@ -5,7 +5,6 @@
 geographical data.
 
 """
-
 from haversine import haversine, Unit
 from sqlalchemy import false, true
 from floodsystem.station import MonitoringStation
@@ -78,8 +77,10 @@ def rivers_by_station_number(stations, N):
         if not inlist:
             Nlist.append(t)
 
+    Nlist.sort(key=lambda x: x[1], reverse=True)
+    CritValue = Nlist[N][1]
     for group in Nlist:
-        if group[1]>=N:
+        if group[1] >= CritValue:
             Flist.append(group)
     Flist.sort(key=lambda x: x[1], reverse=True)
     return Flist
