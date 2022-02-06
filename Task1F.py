@@ -16,5 +16,5 @@ run()
 #Output of stations with inconsistent values using the inconsistent_typical_range_stations function
 def run2():
     stations = build_station_list()
-    return inconsistent_typical_range_stations(stations)
+    return print(inconsistent_typical_range_stations(stations))
 run2()
