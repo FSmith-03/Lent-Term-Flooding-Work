@@ -1,5 +1,5 @@
-from floodsystem.station import MonitoringStation, inconsistent_typical_range_stations
 from floodsystem.stationdata import build_station_list
+from floodsystem.station import inconsistent_typical_range_stations
 
 #Demonstration of the module typical_range_consistent outputting the True or False for each station
 def run():
@@ -7,14 +7,16 @@ def run():
     print("------Task 1F-------")
     ConsistentLevel = []
     stations = build_station_list()
-    for n in range(len(stations)):
-        t = stations[n].typical_range_consistent()
+    for station in stations:
+        t = station.typical_range_consistent()
         print(t)
-    return
+    
+    
+    t = sorted(inconsistent_typical_range_stations(stations))   
+    print(t)       
+
+    
 run()
 
+
 #Output of stations with inconsistent values using the inconsistent_typical_range_stations function
-def run2():
-    stations = build_station_list()
-    return print(inconsistent_typical_range_stations(stations))
-run2()
