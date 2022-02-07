@@ -13,7 +13,7 @@ def test_task1():
     assert StationsWithinR() == ['A6 Bridge', 'Ardingly', 'Bourton Dickler', 'Bradley Bridge', 'Gaw Bridge', 'Hemingford', 'Letcombe Regis', 'Lovington', 'Netherside Hall', 'Surfleet Sluice', 'Swindon']
     
     #task1D
-    assert test1()[0] == [950]
+    assert test1()[0] == 950
     assert test1()[1] == ['River Dikler', 'River Glen', 'River Parrett', 'River Great Ouse', 'Smestow Brook', 'River Brock', 'River Wharfe', 'River Ouse', 'Letcombe Brook', 'Bradley Brook']
     assert test2()[0] == ['Airmyn', 'Apperley Bridge', 'Armley', 'Beal Weir Bridge', 'Bingley', 'Birkin Holme Washlands', 'Carlton Bridge', 'Castleford', 'Chapel Haddlesey', 'Cononley', 'Cottingley Bridge', 'Ferrybridge Lock', 'Fleet Weir', 'Gargrave', 'Kildwick', 'Kirkstall Abbey', 'Knottingley Lock', 'Leeds Crown Point', 'Leeds Crown Point Flood Alleviation Scheme', 'Leeds Knostrop Weir Flood Alleviation Scheme', 'Oulton Lemonroyd', 'Saltaire', 'Snaygill', 'Stockbridge']
     assert test2()[1] == ['Cam', 'Cambridge', 'Cambridge Baits Bite', 'Cambridge Jesus Lock', 'Dernford', 'Great Chesterford', 'Weston Bampfylde']
