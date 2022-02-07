@@ -22,5 +22,5 @@ def test_task1():
     #Task 1E
     assert stationswithin9() == [('River Thames', 56), ('River Avon', 32), ('River Great Ouse', 31), ('River Derwent', 26), ('River Aire', 25), ('River Calder', 24), ('River Severn', 22), ('River Stour', 22), ('River Ouse', 19), ('River Colne', 19)]
 
-    #Task 1F
+    #Task 1F.
     assert stationswithinconsistensies() == ['Airmyn', 'Blacktoft', 'Braunton', 'Brentford', 'Broomfleet Weighton Lock', 'East Hull Hedon Road', 'Eastbourne Harbour', 'Fleetwood', 'Goole', 'Hedon Thorn Road Bridge', 'Hedon Westlands Drain', 'Hempholme Pumping Station Roam Drain', 'Hull Barrier Victoria Pier', 'Hull High Flaggs, Lincoln Street', 'Littlehampton', 'Medmerry', 'North America', 'Paull', 'Salt End', 'Sandwich Quay', 'Sindlesham Mill', 'Stone Creek', 'Templers Road', 'Tickton Pumping Station', 'Topsham', 'Totnes', 'Truro Harbour', 'Wilfholme Pumping Station']
