@@ -10,8 +10,13 @@ def stationswithinconsistensies():
     
     
     t = sorted(inconsistent_typical_range_stations(stations))   
-    print(t)          
-stationswithinconsistensies()
+    return(t)          
+
+if __name__ == "__main__":
+    print("*** Task 1c: CUED Part IA Flood Warning System ***")
+    print(stationswithinconsistensies())
+
+
 
 #Old Test Function
 def test_function():
