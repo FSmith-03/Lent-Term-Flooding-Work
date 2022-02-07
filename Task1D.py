@@ -1,7 +1,7 @@
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import river_with_station
 from floodsystem.geo import stations_by_river
-import pytest
+
 def test1():
     """Requirements for Task 1A"""
 
@@ -22,7 +22,10 @@ def test2():
     print(sorted(RiverToStation["River Aire"])) #test 2
     print(sorted(RiverToStation["River Cam"]))
     print(sorted(RiverToStation["River Thames"]))
+
 test2()
+
+
 def tester():
     assert test1() == ['Addlestone Bourne', 'Adur', 'Aire Washlands', 'Alconbury Brook',
  'Aldbourne', 'Aller Brook', 'Alre', 'Alt', 'Alverthorpe Beck', 'Ampney Brook']
