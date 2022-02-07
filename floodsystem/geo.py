@@ -6,7 +6,6 @@ geographical data.
 
 """
 from haversine import haversine, Unit
-from sqlalchemy import false, true
 from floodsystem.station import MonitoringStation
 from floodsystem.stationdata import build_station_list
 from .utils import sorted_by_key  # noqa
