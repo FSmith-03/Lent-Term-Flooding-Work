@@ -10,7 +10,7 @@ def test_task1():
     assert closest() == [('Cambridge Jesus Lock', 0.840237595667494), ('Bin Brook', 2.502277543239629), ("Cambridge Byron's Pool", 4.07204948005424), ('Cambridge Baits Bite', 5.115596582531859), ('Girton', 5.227077565748483), ('Haslingfield Burnt Mill', 7.0443978959918025), ('Oakington', 7.12825901765745), ('Stapleford', 7.265704342799649), ('Comberton', 7.735085060177142), ('Dernford', 7.993872393303291)]
     
     #task1C
-    assert StationsWithinR() == ['A6 Bridge', 'Ardingly', 'Bourton Dickler', 'Bradley Bridge', 'Gaw Bridge', 'Hemingford', 'Letcombe Regis', 'Lovington', 'Netherside Hall', 'Surfleet Sluice', 'Swindon']
+    assert StationsWithinR() == ['Bin Brook', 'Cambridge Baits Bite', "Cambridge Byron's Pool", 'Cambridge Jesus Lock', 'Comberton', 'Dernford', 'Girton', 'Haslingfield Burnt Mill', 'Lode', 'Oakington', 'Stapleford']
     
     #task1D
     assert test1()[0] == 950
