@@ -28,7 +28,7 @@ def stations_within_radius(stations, centre, r):
     for station in stations:                                
         tup = Sortedtuple[x]                                #gets tuple containing current station
         if (tup[1] < r):                                    #if tuple in range add to list
-            SmallRStations.append(station.name)
+            SmallRStations.append(tup[0])
         else:                                               #if not break the loop as you know all future stations are further away
             break    
         x+=1                                                #increase count for next station
