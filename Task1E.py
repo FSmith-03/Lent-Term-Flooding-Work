@@ -3,8 +3,13 @@ from floodsystem.geo import rivers_by_station_number
 from floodsystem.stationdata import build_station_list
 def stationswithin9():
     stations = build_station_list
-    return print(rivers_by_station_number(stations, 9))
-print("-----Task 1E Stations Sorted By Rivers-----")
+    return rivers_by_station_number(stations, 9)
+
+if __name__ == "__main__":
+    print("-----Task 1E Stations Sorted By Rivers-----")
+    print (stationswithin9())
+
+
 
 stationswithin9()
 #Old Test Function
