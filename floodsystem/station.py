@@ -40,13 +40,13 @@ class MonitoringStation:
     #Task 1F
     def typical_range_consistent(self):
         a=1
-        if self.typical_range is None:
-            return False
+        if self.typical_range is None:              #Checks if the tuple for the levels is empty
+            return False                            #Returns false for empty tuple
         else:
-            N1=self.typical_range[0]
+            N1=self.typical_range[0]                #Sets lower and upper range in order to compare for consistency
             N2=self.typical_range[1]
             if N1>=N2:
-                return False
+                return False                        #If no consistent will return False
             else:
                 return True
 

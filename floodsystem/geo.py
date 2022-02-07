@@ -60,28 +60,28 @@ def stations_by_river(stations):
 #Task 1E
 def rivers_by_station_number(stations, N):
 
-    stations = build_station_list()
-    Nlist = []
+    stations = build_station_list()         #Stations list
+    Nlist = []                              #Builds 2 empty lists to hold the values
     Flist = []
-    for station in stations:
-        counter = 1
+    for station in stations:                #Loops through the list of all stations
+        counter = 1                         #Counter for the number of times the river appears
         inlist = False
-        r = station.river
-        for n in range(len(stations)):
+        r = station.river                   #Provides a river to check for
+        for n in range(len(stations)):      #Loops through the list of stations and checks for the same river
             if stations[n].river == r:
-                counter+=1
-        t = (r, counter)
-        if t in Nlist:
+                counter+=1                  #Records each instance the river appears
+        t = (r, counter)                    #Stores the data in the desired tuple format
+        if t in Nlist:                      #Checks if the tuple is already in the list, this eliminates any duplicates
             inlist = True
         if not inlist:
-            Nlist.append(t)
+            Nlist.append(t)                 #Adds the tuple to the list
 
-    Nlist.sort(key=lambda x: x[1], reverse=True)
-    CritValue = Nlist[N][1]
+    Nlist.sort(key=lambda x: x[1], reverse=True)        #Sorts the list of tuples in descending order
+    CritValue = Nlist[N][1]                 #Determines the minimum number of stations to allow
     for group in Nlist:
-        if group[1] >= CritValue:
+        if group[1] >= CritValue:           #Filters rivers without the sufficient critical value
             Flist.append(group)
-    Flist.sort(key=lambda x: x[1], reverse=True)
+    Flist.sort(key=lambda x: x[1], reverse=True)        #Sorts the final list
     return Flist
 
 
