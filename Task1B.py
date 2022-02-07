@@ -15,8 +15,8 @@ def furthest():
 
 if __name__ == "__main__":
     print("*** Task 1B: CUED Part IA Flood Warning System ***")
-    print(closest())
-    print(furthest())
+    print("10 closest stations:",  closest())
+    print("10 furthest stations:", furthest())
 
 
 

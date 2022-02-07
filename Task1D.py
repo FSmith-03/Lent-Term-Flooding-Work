@@ -9,11 +9,11 @@ def test1():
     stations = build_station_list()
     river = river_with_station(stations)
     river.sort          #test 1
-    outputs = []
-    outputs.append(len(river))
+    Riverlist = []
+    numRivers =len(river)
     for x in range(10):
-        outputs.append(river[x])
-    return outputs
+        Riverlist.append(river[x])
+    return numRivers,Riverlist
     
 def test2():
     stations = build_station_list()
@@ -27,10 +27,11 @@ def test2():
 
 if __name__ == "__main__":
     print("*** Task 1c: CUED Part IA Flood Warning System ***")
-    print(test1())
-    print(test2()[0])
-    print(test2()[1])
-    print(test2()[2])
+    print("Number of stations:", test1()[0])
+    print("first 10:", test1()[1])
+    print("River Aire stations:", test2()[0])
+    print("River Cam stations:", test2()[1])
+    print("River Thames stations:", test2()[2])
 
 
 #test
