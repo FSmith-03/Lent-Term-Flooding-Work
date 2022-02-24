@@ -8,4 +8,13 @@ def stations_level_over_threshold(stations, tol):
         if not station.relative_water_level() == None and station.relative_water_level() > tol:     #confirms there are reading for water level and above tollerence
             temp = (station.name, station.relative_water_level())                                   #adds to list if above
             tuplelist.append(temp)
-    return sorted_by_key(tuplelist,1,True)     
+    return sorted_by_key(tuplelist,1,True)    
+
+def stations_highest_rel_level(stations, N):
+    tuplelist = []                                                                                  #empty list to store tuples
+    for station in stations:                                                                        #loops through stations
+        if not station.relative_water_level() == None:                              #confirms there are reading for water level and above tollerence
+            temp = (station.name, station.relative_water_level())                                   #adds to list if above
+            tuplelist.append(temp)
+    sortedtuplelist = sorted_by_key(tuplelist,1,True)
+    return sortedtuplelist[:N]
