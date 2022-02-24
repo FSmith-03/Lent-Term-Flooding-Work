@@ -1,4 +1,5 @@
 from Task2B import task2b
+from Task2C import task2c
 
 
 def test_task2():
@@ -12,5 +13,16 @@ def test_task2():
             break
     assert state1 == True
 
-    #Test for task 2C -
+    #Test for task 2C - if the function returns a list that is not in descending order then the
+    #assertion will fail
+    greatestratios = task2c()
+    state2 = True
+    for tuple in greatestratios:
+        for n in range(9):
+            if tuple(n+1)>tuple(n):
+                state2 = False
+                break
+    assert state2 == True
+
+    
     return 
