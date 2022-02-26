@@ -1,5 +1,7 @@
 import datetime
-
+from floodsystem.plot import plot_water_level_with_fit
+from floodsystem.stationdata import build_station_list, update_water_levels
+from floodsystem.flood import stations_highest_rel_level
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.stationdata import build_station_list
 from floodsystem.analysis import polyfit
@@ -8,30 +10,29 @@ def run():
 
     # Build list of stations
     stations = build_station_list()
-
-    # Station name to find
-    station_name = "Cam"
+    update_water_levels(stations)                                       
+    Sationlist = stations_highest_rel_level(stations,5)
 
     # Find station
-    station_cam = None
+    stationlist = []
     for station in stations:
-        if station.name == station_name:
-            station_cam = station
-            break
+        for x in Sationlist:
+            if station.name == x[0]:
+                stationlist.append(station)
+                break
 
-    # Check that station could be found. Return if not found.
-    if not station_cam:
-        print("Station {} could not be found".format(station_name))
-        return
 
     dt = 2
-    dates, levels = fetch_measure_levels(
-        station_cam.measure_id, dt=datetime.timedelta(days=dt))
-    
-    print(polyfit(dates,levels, 3))
-    
+    for station in stationlist:
+        dates, levels = fetch_measure_levels(
+            station.measure_id, dt=datetime.timedelta(days=dt))
+        print(station.name)
+        if (not len(levels) == 0):
+            print(plot_water_level_with_fit(station,dates,levels, 4))
+        else:
+            print("no data for this station.")
 
 
 if __name__ == "__main__":
-    print("*** Task 2D: CUED Part IA Flood Warning System ***")
+    print("*** Task 2F: CUED Part IA Flood Warning System ***")
     run()
