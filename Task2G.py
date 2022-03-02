@@ -1,4 +1,5 @@
 import datetime
+from typing import overload
 from floodsystem.plot import plot_water_level_with_fit_2g
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.flood import stations_highest_rel_level
@@ -28,8 +29,37 @@ def run():
         dates, levels = fetch_measure_levels(
             station.measure_id, dt=datetime.timedelta(days=dt))  
         if (not len(levels) == 0 and not station.relative_water_level() == None): #error after a certain point, not sure why but this should give you a feel for the range of derivatives
-            print("gradient for", station.name)
-            print(plot_water_level_with_fit_2g(station,dates,levels, 4))
+            gradient = plot_water_level_with_fit_2g(station,dates,levels, 4)
+            if gradient <=0:
+                riskB = 1
+            elif gradient <=1:
+                riskB = 2
+            elif gradient <=3:
+                riskB = 3
+            else:
+                riskB = 4
+        if station.typical_range_consistent() is True:
+            tup_range = station.typical_range
+            delta = tup_range[1]-tup_range[0]
+            stand_dev = 2.5*delta
+            maxval = tup_range[1] + stand_dev
+            point = station.latest_level
+            if point > maxval:
+                riskA = 4
+            elif point < maxval:
+                riskA = 3
+            else:
+                riskA = 1 
+        OverallRisk = (riskA+riskB)*0.5
+        if OverallRisk <= 2:
+            output = "Low"
+        elif OverallRisk <= 2.5:
+            output = "Moderate"
+        elif OverallRisk <= 3:
+            output = "High"
+        else:
+            output = "Severe"
+        print( "Risk level for",station.name,"is", output)
             
         #print(temp1)
         #print(temp2)
