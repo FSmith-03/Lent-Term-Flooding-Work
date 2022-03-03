@@ -11,7 +11,8 @@ from sympy import *
 def run():
 
     # Build list of stations
-    stations = build_station_list()
+    stations1 = build_station_list()
+    stations = stations1[:20]
     update_water_levels(stations)                                       
     Sationlist = stations_highest_rel_level(stations,5)
 
