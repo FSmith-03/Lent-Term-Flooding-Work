@@ -1,3 +1,4 @@
+from ast import Break
 from Task2B import task2b
 from Task2C import task2c
 
@@ -17,11 +18,14 @@ def test_task2():
     #assertion will fail
     greatestratios = task2c()
     state2 = True
-    for tuple in greatestratios:
-        for n in range(9):
-            if tuple(n+1)>tuple(n):
-                state2 = False
-                break
+    for t in range(len(greatestratios)):
+        if greatestratios[t][1]<[t+1][1]:
+            state2 = False
+            break
+        else:
+            state2 = True
+
+        
     assert state2 == True
 
     
