@@ -13,6 +13,11 @@ def plot_water_levels(station, dates, levels):
     plt.ylabel('water level')
     plt.xticks(rotation=45)
     plt.title(station.name)
+    dates
+    y1 = np.linspace(station.typical_range[0],station.typical_range[0], len(dates)) 
+    y2 = np.linspace(station.typical_range[1],station.typical_range[1], len(dates)) 
+    plt.plot(dates, y1) #plots "min" line    
+    plt.plot(dates, y2) #plots "max" line
 
     plt.tight_layout()
 
