@@ -19,7 +19,7 @@ def test_task2():
     greatestratios = task2c()
     state2 = True
     for t in range(len(greatestratios)):
-        if greatestratios[t][1]<[t+1][1]:
+        if greatestratios[t][1]<greatestratios[t-1][1]:
             state2 = False
             break
         else:

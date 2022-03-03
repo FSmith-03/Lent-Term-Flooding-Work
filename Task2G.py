@@ -24,7 +24,7 @@ def run():
                 stationlist.append(station)
                 break
 
-
+#Find rate of change of flood level to determine whther water is rising or not
     dt = 2
     for station in stations:
         dates, levels = fetch_measure_levels(
@@ -32,7 +32,7 @@ def run():
         if (not len(levels) == 0 and not station.relative_water_level() == None): #error after a certain point, not sure why but this should give you a feel for the range of derivatives
             gradient = plot_water_level_with_fit_2g(station,dates,levels, 4)
             if gradient <=0:
-                riskB = 1
+                riskB = 1       #Given certain values of the gradient, this is then grouped and given a value
             elif gradient <=1:
                 riskB = 2
             elif gradient <=3:
@@ -42,16 +42,16 @@ def run():
         if station.typical_range_consistent() is True:
             tup_range = station.typical_range
             delta = tup_range[1]-tup_range[0]
-            stand_dev = 2.5*delta
+            stand_dev = 2.5*delta       #Using 2.5xthe interquartile range gives the max value
             maxval = tup_range[1] + stand_dev
             point = station.latest_level
-            if point > maxval:
+            if point > maxval:      #Depending on current water levels a certain value is determined
                 riskA = 4
             elif point < maxval:
                 riskA = 3
             else:
                 riskA = 1 
-        OverallRisk = (riskA+riskB)*0.5
+        OverallRisk = (riskA+riskB)*0.5     #Overall risk is an average of the 2 values
         if OverallRisk <= 2:
             output = "Low"
         elif OverallRisk <= 2.5:
@@ -60,7 +60,7 @@ def run():
             output = "High"
         else:
             output = "Severe"
-        print( "Risk level for",station.name,"is", output)
+        print( "Risk level for",station.name,"is", output)      #Function output
             
         #print(temp1)
         #print(temp2)
