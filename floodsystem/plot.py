@@ -7,7 +7,7 @@ import matplotlib
 from sympy import *
 
 def plot_water_levels(station, dates, levels):
-    plt.plot(dates, levels)
+    plt.plot(dates, levels)                                     
     # Add axis labels, rotate date labels and add plot title
     plt.xlabel('date')
     plt.ylabel('water level')
@@ -27,15 +27,15 @@ def plot_water_level_with_fit(station, dates, levels, p):
     plt.ylabel('water level')  
     plt.title(station.name)  
     plt.xticks(rotation=45)
-    p_coeff = np.polyfit(x-x[0], y, p)
-    poly = np.poly1d(p_coeff)
-    plt.plot(dates,y,'.')
-    x1 = np.linspace(x[0], x[-1], 30)
-    y1 = np.linspace(station.typical_range[0],station.typical_range[0], 30)
-    y2 = np.linspace(station.typical_range[1],station.typical_range[1], 30)
-    plt.plot(x1, poly(x1 -x[0]))
-    plt.plot(x1, y1)
-    plt.plot(x1, y2)
+    p_coeff = np.polyfit(x-x[0], y, p)  
+    poly = np.poly1d(p_coeff)           #calcs poly with best fit
+    plt.plot(dates,y,'.')               #plots 
+    x1 = np.linspace(x[0], x[-1], 30)   
+    y1 = np.linspace(station.typical_range[0],station.typical_range[0], 30) 
+    y2 = np.linspace(station.typical_range[1],station.typical_range[1], 30) 
+    plt.plot(x1, poly(x1 -x[0])) #plots poly
+    plt.plot(x1, y1) #plots "min" line    
+    plt.plot(x1, y2) #plots "max" line
     # Display plot
     plt.show()
     return poly, x[0]
@@ -48,20 +48,20 @@ def plot_water_level_with_fit_2g(station, dates, levels, p):
     plt.title(station.name)  
     plt.xticks(rotation=45)
     p_coeff = np.polyfit(x-x[0], y, p)
-    poly = np.poly1d(p_coeff)
-    plt.plot(dates,y,'.')
+    poly = np.poly1d(p_coeff) #calcs poly with best fit 
+    plt.plot(dates,y,'.')     #plots 
     x1 = np.linspace(x[0], x[-1], 30)
     y1 = np.linspace(station.typical_range[0],station.typical_range[0], 30)
     y2 = np.linspace(station.typical_range[1],station.typical_range[1], 30)
-    plt.plot(x1, poly(x1 -x[0]))
-    plt.plot(x1, y1)
-    plt.plot(x1, y2)
+    plt.plot(x1, poly(x1-x[0])) #plots poly
+    plt.plot(x1, y1)    #plots "min" line    
+    plt.plot(x1, y2)    #plots "max" line
     # Display plot
     #plt.show()
     point = x1[0] - x[0]
     #print(point,poly(point))
-    derivpoly = np.polyder(poly, 1)
-    gradient = derivpoly(point)
+    derivpoly = np.polyder(poly, 1) #calcs deriverative of plot
+    gradient = derivpoly(point)     #finds gradient at current point
 
     #other method 
     #x=Symbol('x')
