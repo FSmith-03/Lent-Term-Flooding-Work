@@ -102,7 +102,11 @@ def run():
     
 
     #if not n == 0: 
-
+def run2():
+    stations = build_station_list()
+    for station in stations:
+        print(riskfactor(station))
+run2()
 
 
 
