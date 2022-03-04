@@ -25,10 +25,10 @@ def run():
     dt = 2
     for station in stationlist:
         dates, levels = fetch_measure_levels(
-            station.measure_id, dt=datetime.timedelta(days=dt))
+            station.measure_id, dt=datetime.timedelta(days=dt)) #creates a touple of height and time
         print(station.name)
-        if (not len(levels) == 0):
-            print(plot_water_level_with_fit(station,dates,levels, 4))
+        if (not len(levels) == 0):                              #makes sure there is data to plot
+            print(plot_water_level_with_fit(station,dates,levels, 4))   #plots graph
         else:
             print("no data for this station.")
 
