@@ -41,6 +41,7 @@ def riskfactor(station):
     return list
 
 def riskcategory(station):
+    riskcat="" #needed to define riskcat
     total = 0 
     riskvalues = riskfactor(station)
     length = len(riskvalues)
