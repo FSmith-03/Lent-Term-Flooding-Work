@@ -9,17 +9,14 @@ from floodsystem.stationdata import build_station_list
 import datetime
 
 def gradient(station):
-    stations = build_station_list()
-    update_water_levels(stations)
     dt = 2
     dates, levels = fetch_measure_levels(
             station.measure_id, dt=datetime.timedelta(days=dt))  
     if (not len(levels) == 0 and not station.relative_water_level() == None): #error after a certain point, not sure why but this should give you a feel for the range of derivatives
         return plot_water_level_with_fit_2g(station,dates,levels, 4)
 
-def riskfactor(station):
-    stations = build_station_list()
-    update_water_levels(stations)
+def riskfactor(station,stations):
+
     town = station.town
     t = ()
     list = []
@@ -29,9 +26,11 @@ def riskfactor(station):
         for newstation in stations:
             if newstation.town == town:
                 inlist = False
-                if gradient(newstation) > grad:
+                if gradient(newstation) is None:        #when the station has no data
+                    grad = 0
+                elif gradient(newstation) > grad:
                     grad = gradient(newstation)
-                if newstation.relative_water_level() > rat:
+                if not newstation.relative_water_level() is None and newstation.relative_water_level() > rat :
                     rat = newstation.relative_water_level()
             t=(town, rat, grad)
             if t in list:
@@ -40,11 +39,13 @@ def riskfactor(station):
                 list.append(t)
     return list
 
-def riskcategory(station):
+def riskcategory(station,stations):
     riskcat="" #needed to define riskcat
     total = 0 
-    riskvalues = riskfactor(station)
+    riskvalues = riskfactor(station,stations)
     length = len(riskvalues)
+    if length == 0:                         #when there are no risk values
+       return station.town, "No Values", "0"
     fvalues = riskvalues[length-1]
     grad = fvalues[2]
     rat = fvalues[1]
@@ -78,7 +79,12 @@ def riskcategory(station):
 def run():
     stations = build_station_list()
     update_water_levels(stations)
-    stationlist = stations [:8]
+    stationlist = stations 
+    x=0
     for station in stationlist:
-        print(riskcategory(station))
+        if (x<50):                                  #only output the first 50 locations as takes long enough to do that.
+            print(riskcategory(station,stationlist))
+            x+=1
+        else:
+            break
 run()        
