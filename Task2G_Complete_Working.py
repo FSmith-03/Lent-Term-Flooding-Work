@@ -70,9 +70,9 @@ def riskcategory(station,stations):
         riskcat = "Moderate"
     elif total == 6:
         riskcat = "High"
-    elif total == 8:
+    elif total >= 8:
         riskcat = "Severe"
-    elif total ==2:
+    elif total <=2:
         riskcat = "Low"
     return town, riskcat, total
 
