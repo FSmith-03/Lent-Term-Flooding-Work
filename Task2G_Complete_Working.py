@@ -8,7 +8,7 @@ from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.stationdata import build_station_list
 import datetime
 
-def gradient(station):
+def gradient(station):  #Function to find the gradient of the graph at the latest point for a station
     dt = 2
     dates, levels = fetch_measure_levels(
             station.measure_id, dt=datetime.timedelta(days=dt))  
@@ -20,16 +20,16 @@ def riskfactor(station,stations):
     town = station.town
     t = ()
     list = []
-    if gradient(station) is not None:
-        grad = gradient(station)
-        rat = station.relative_water_level()
+    if gradient(station) is not None:           #Ensures that station with no data are not included
+        grad = gradient(station)                #Calls the gradient for the station
+        rat = station.relative_water_level()    #Uses the ratio function
         for newstation in stations:
-            if newstation.town == town:
+            if newstation.town == town:         #Checks for stations with same town
                 inlist = False
                 if gradient(newstation) is None:        #when the station has no data
                     grad = 0
                 elif gradient(newstation) > grad:
-                    grad = gradient(newstation)
+                    grad = gradient(newstation)         #Appends data only if it is more severe than the current data
                 if not newstation.relative_water_level() is None and newstation.relative_water_level() > rat :
                     rat = newstation.relative_water_level()
             t=(town, rat, grad)
@@ -37,7 +37,7 @@ def riskfactor(station,stations):
                 inlist = True
             else:
                 list.append(t)
-    return list
+    return list     #Produces a list of the data points with the town gradient and ratio
 
 def riskcategory(station,stations):
     riskcat="" #needed to define riskcat
@@ -46,11 +46,11 @@ def riskcategory(station,stations):
     length = len(riskvalues)
     if length == 0:                         #when there are no risk values
        return station.town, "No Values", "0"
-    fvalues = riskvalues[length-1]
-    grad = fvalues[2]
-    rat = fvalues[1]
+    fvalues = riskvalues[length-1]      #Gets the most severe values - the last in the list
+    grad = fvalues[2]                   #Assigns the values
+    rat = fvalues[1]    
     town = fvalues[0]
-    if grad>1.5:
+    if grad>1.5:                        #Biases the values depending on a total system
         total += 5
     elif 1<grad<1.5:
         total += 3
@@ -66,7 +66,7 @@ def riskcategory(station,stations):
         total += 4
     else:
         total += 2
-    if total == 4:
+    if total == 4:              #Gives a certain category depending on the total
         riskcat = "Moderate"
     elif total == 6:
         riskcat = "High"
@@ -74,7 +74,7 @@ def riskcategory(station,stations):
         riskcat = "Severe"
     elif total <=2:
         riskcat = "Low"
-    return town, riskcat, total
+    return town, riskcat, total         #Returns the riskcategory and the total
 
 def run():
     stations = build_station_list()
